@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual Galaxy A56 → Mac</title>
+<style>
+:root{
+  --bg:#f5f5f7; --card:#fff; --text:#1d1d1f; --muted:#6e6e73; --line:#d2d2d7;
+  --accent:#0071e3; --ok:#1d8f3f; --warn:#b25e00; --code:#f0f0f3;
+  --phone:#111; --screen:#fafafa; --row:#fff; --on:#3478f6;
+}
+@media (prefers-color-scheme: dark){
+  :root{--bg:#000; --card:#1c1c1e; --text:#f5f5f7; --muted:#98989d; --line:#38383a;
+  --accent:#2997ff; --ok:#30d158; --warn:#ff9f0a; --code:#2c2c2e; --screen:#1c1c1e; --row:#2c2c2e;}
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:32px 16px 80px}
+h1{font-size:2rem;margin:0 0 4px}
+h2{font-size:1.4rem;margin:44px 0 12px;padding-top:8px;border-top:1px solid var(--line)}
+h3{font-size:1.05rem;margin:22px 0 8px}
+p.sub{color:var(--muted);margin:0 0 24px}
+.card{background:var(--card);border-radius:16px;padding:18px 20px;margin:14px 0;border:1px solid var(--line)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+code,pre{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88rem}
+code{background:var(--code);padding:1px 6px;border-radius:6px}
+pre{background:var(--code);padding:12px 14px;border-radius:12px;overflow-x:auto;margin:10px 0}
+ol,ul{padding-left:22px}
+li{margin:4px 0}
+nav{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 8px}
+nav a{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:5px 14px;color:var(--accent);text-decoration:none;font-size:.9rem}
+.tag{display:inline-block;font-size:.75rem;padding:2px 10px;border-radius:999px;border:1px solid var(--line);color:var(--muted)}
+.note{border-left:4px solid var(--accent);padding:8px 14px;background:var(--card);border-radius:0 12px 12px 0;margin:12px 0}
+.note.warn{border-color:var(--warn)}
+.note.ok{border-color:var(--ok)}
+table{border-collapse:collapse;width:100%;font-size:.93rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--muted);font-weight:600}
+
+/* ---- Mockup celular ---- */
+.figs{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin:18px 0}
+figure{margin:0;text-align:center;max-width:230px}
+figcaption{font-size:.82rem;color:var(--muted);margin-top:8px}
+.phone{width:210px;background:var(--phone);border-radius:30px;padding:9px;box-shadow:0 6px 18px rgba(0,0,0,.25)}
+.screen{background:var(--screen);border-radius:22px;padding:12px 10px 14px;min-height:300px;text-align:left;font-size:12px;line-height:1.35;color:var(--text)}
+.screen .bar{height:5px;width:44px;background:var(--line);border-radius:3px;margin:0 auto 10px}
+.screen h4{margin:2px 4px 8px;font-size:14px}
+.row{background:var(--row);border-radius:12px;padding:9px 10px;margin:5px 0;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.row small{display:block;color:var(--muted);font-size:10px}
+.row.hl{outline:2px solid #ff3b30;outline-offset:1px}
+.sw{width:34px;height:20px;border-radius:12px;background:#9a9aa0;position:relative;flex:none}
+.sw::after{content:"";position:absolute;top:2px;left:2px;width:16px;height:16px;border-radius:50%;background:#fff}
+.sw.on{background:var(--on)}
+.sw.on::after{left:16px}
+.btn{display:inline-block;background:var(--on);color:#fff;border-radius:999px;padding:6px 14px;font-size:11px;margin:4px 2px 0}
+.btn.ghost{background:var(--row);color:var(--text);border:1px solid var(--line)}
+.dlg{background:var(--row);border-radius:16px;padding:14px;margin-top:40px;box-shadow:0 4px 14px rgba(0,0,0,.2)}
+.chk{display:inline-block;width:12px;height:12px;border:2px solid var(--on);border-radius:3px;background:var(--on);vertical-align:middle;margin-right:6px}
+.dev{display:flex;gap:8px;align-items:center}
+.dot{width:26px;height:26px;border-radius:8px;background:var(--on);flex:none;display:grid;place-items:center;color:#fff;font-size:13px}
+
+/* ---- Mockup Mac ---- */
+.mac{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.18);overflow:hidden;margin:16px auto;max-width:640px}
+.mac .tb{background:var(--code);padding:8px 12px;display:flex;align-items:center;gap:7px;border-bottom:1px solid var(--line);font-size:12px;color:var(--muted)}
+.mac .tb i{width:11px;height:11px;border-radius:50%;display:inline-block}
+.mac .tb i:nth-child(1){background:#ff5f57}.mac .tb i:nth-child(2){background:#febc2e}.mac .tb i:nth-child(3){background:#28c840}
+.mac .tb span{margin:0 auto;padding-right:40px}
+.mac .bd{padding:16px;font-size:14px}
+.mac .bd .row{font-size:13px}
+.mac pre{margin:0;background:#1e1e1e;color:#e6e6e6}
+.cap{text-align:center;font-size:.82rem;color:var(--muted);margin:-6px 0 14px}
+.side{display:grid;grid-template-columns:130px 1fr;gap:12px}
+.side .l{border-right:1px solid var(--line);padding-right:10px;font-size:12px;color:var(--muted)}
+.side .l div{padding:4px 6px;border-radius:6px}
+.side .l div.a{background:var(--code);color:var(--text)}
+.top{position:sticky;top:0;z-index:10;background:var(--card);border-bottom:1px solid var(--line)}
+.top div{max-width:900px;margin:0 auto;padding:10px 16px;display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.top b{margin-right:10px}
+.top a{color:var(--text);text-decoration:none;padding:6px 14px;border-radius:999px;font-size:.92rem}
+.top a:hover{background:var(--code)}
+.top a.on{background:var(--accent);color:#fff}
+html{scroll-padding-top:70px}
+.step{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--accent);color:#fff;font-size:.8rem;margin-right:6px}
+</style>
+</head>
+<body>
+<header class="top"><div>
+  <b>Galaxy A56 → Mac</b>
+  <a href="Manual_Galaxy_A56_Mac.html" class="on">Manual geral</a>
+  <a href="Procedimentos_Cabo_e_WiFi.html#cabo">Via cabo (OpenMTP)</a>
+  <a href="Procedimentos_Cabo_e_WiFi.html#wifi">Via Wi-Fi (LocalSend)</a>
+</div></header>
+<div class="wrap">
+
+<h1>Manual: Galaxy A56 → Mac</h1>
+<p class="sub">Como copiar arquivos do celular Samsung para o Mac, com as ferramentas instaladas em 09/11/2026. As telas abaixo são <b>ilustrações</b> feitas para este manual (não são capturas reais); o aspecto exato pode variar um pouco conforme a versão do One UI e do macOS.</p>
+
+<nav>
+  <a href="#resumo">Resumo</a>
+  <a href="#localsend">LocalSend</a>
+  <a href="#devmode">Modo desenvolvedor</a>
+  <a href="#adb">ADB</a>
+  <a href="#openmtp">OpenMTP</a>
+  <a href="#problemas">Problemas</a>
+  <a href="#comandos">Comandos</a>
+</nav>
+
+<h2 id="resumo">1. Resumo</h2>
+<div class="card">
+<table>
+<tr><th>Ferramenta</th><th>Para quê</th><th>Precisa de cabo?</th><th>Status</th></tr>
+<tr><td><b>LocalSend</b></td><td>Enviar arquivos do celular ao Mac pelo Wi-Fi</td><td>Não</td><td><span class="tag">funcionando ✔</span></td></tr>
+<tr><td><b>ADB</b> (android-platform-tools 37.0.2)</td><td>Copiar pastas inteiras pelo terminal</td><td>Sim (ou Wi-Fi)</td><td><span class="tag">instalado, celular não detectado</span></td></tr>
+<tr><td><b>OpenMTP</b> 3.3.0</td><td>Navegar nas pastas do celular e arrastar arquivos</td><td>Sim</td><td><span class="tag">instalado, celular não detectado</span></td></tr>
+</table>
+</div>
+<div class="note ok"><b>Recomendação:</b> use o <b>LocalSend</b>. É o único método que já foi testado e funcionou neste Mac. Os arquivos recebidos caem em <code>~/Galaxy_A56</code>.</div>
+<div class="note">O macOS não lê celular Android sozinho (ele não suporta o protocolo MTP). Por isso é preciso um destes programas.</div>
+
+<!-- ======================= LOCALSEND ======================= -->
+<h2 id="localsend">2. LocalSend (Wi-Fi, sem cabo)</h2>
+<p>App gratuito e de código aberto. Funciona como o AirDrop entre Android e Mac, só que na rede Wi-Fi local e sem conta.</p>
+
+<h3>2.1 Instalação</h3>
+<ul>
+<li><b>Mac:</b> já instalado em <code>/Applications/LocalSend.app</code> (via <code>brew install --cask localsend</code>).</li>
+<li><b>Celular:</b> instale o <b>LocalSend</b> pela Play Store.</li>
+</ul>
+
+<h3>2.2 Escolher a pasta que recebe os arquivos (Mac)</h3>
+<div class="mac">
+  <div class="tb"><i></i><i></i><i></i><span>LocalSend — Configurações</span></div>
+  <div class="bd">
+    <div class="row"><div>Nome do dispositivo<small>Como o Mac aparece no celular</small></div><b>MacBook</b></div>
+    <div class="row hl"><div>Pasta de destino<small>Onde os arquivos recebidos são salvos</small></div><span><b>~/Galaxy_A56</b> &nbsp; <span class="btn" style="font-size:11px">Alterar</span></span></div>
+    <div class="row"><div>Perguntar antes de salvar<small>Escolher o destino a cada envio</small></div><span class="sw"></span></div>
+    <div class="row"><div>Aceitar automaticamente<small>Não pedir confirmação a cada arquivo</small></div><span class="sw"></span></div>
+  </div>
+</div>
+<p class="cap">Ilustração das configurações do LocalSend no Mac. A linha marcada é a pasta de destino.</p>
+<ol>
+<li>Abra o <b>LocalSend</b> no Mac e vá em <b>Configurações</b> (engrenagem).</li>
+<li>Em <b>Pasta de destino</b>, clique em <b>Alterar</b> e escolha <code>Galaxy_A56</code>.</li>
+<li>Deixe o app <b>aberto</b>. Fechado, o Mac não aparece no celular.</li>
+</ol>
+<div class="note warn"><b>Importante:</b> o LocalSend precisa estar <b>aberto no Mac</b> na hora do envio. Foi exatamente isso que impediu o Mac de aparecer na primeira tentativa.</div>
+
+<h3>2.3 Enviar do celular para o Mac</h3>
+<div class="figs">
+  <figure>
+    <div class="phone"><div class="screen">
+      <div class="bar"></div>
+      <h4>LocalSend</h4>
+      <div class="row" style="justify-content:space-around;text-align:center"><b>Receber</b><b style="color:var(--on)">Enviar</b><b>Config.</b></div>
+      <div class="row hl"><span>📁 Pasta</span><small>escolher</small></div>
+      <div class="row"><span>🖼️ Mídia</span></div>
+      <div class="row"><span>📄 Arquivo</span></div>
+      <div class="row"><span>✏️ Texto</span></div>
+    </div></div>
+    <figcaption>1. Aba <b>Enviar</b> → escolha o tipo. Para copiar muita coisa, use <b>Pasta</b>.</figcaption>
+  </figure>
+  <figure>
+    <div class="phone"><div class="screen">
+      <div class="bar"></div>
+      <h4>Dispositivos próximos</h4>
+      <div class="row hl"><div class="dev"><span class="dot">💻</span><div>MacBook<small>192.168.0.10</small></div></div></div>
+      <div class="row"><small>Não achou? toque em <b>Endereço</b> e digite o IP do Mac.</small></div>
+    </div></div>
+    <figcaption>2. Toque no nome do Mac na lista.</figcaption>
+  </figure>
+  <figure>
+    <div class="mac" style="margin:0;max-width:230px">
+      <div class="tb"><i></i><i></i><i></i><span style="padding-right:30px">LocalSend</span></div>
+      <div class="bd" style="font-size:12px">
+        <b>Receber arquivos?</b>
+        <div class="row" style="margin:8px 0">23 fotos · 12 MB</div>
+        <span class="btn">Aceitar</span> <span class="btn ghost">Recusar</span>
+      </div>
+    </div>
+    <figcaption>3. No Mac, clique em <b>Aceitar</b>.</figcaption>
+  </figure>
+</div>
+
+<h3>2.4 Se o Mac não aparecer na lista</h3>
+<ul>
+<li>Confirme que o LocalSend está <b>aberto no Mac</b>.</li>
+<li>Celular e Mac devem estar na <b>mesma rede Wi-Fi</b> (os primeiros números do IP do celular devem ser iguais aos do Mac, por exemplo <code>192.168.0.</code>). Evite rede de visitantes.</li>
+<li>Desligue os <b>dados móveis</b> e qualquer <b>VPN</b> no celular, e atualize a busca.</li>
+<li>Use <b>Endereço</b> no celular e digite o IP do Mac (veja com <code>ipconfig getifaddr en0</code>).</li>
+<li>Alternativa: ligue o <b>Ponto de acesso Wi-Fi</b> do celular e conecte o Mac nele. Isso elimina o roteador do caminho.</li>
+<li>Roteador com <b>isolamento de clientes</b> (AP isolation) impede os aparelhos de se verem. É preciso desligar essa opção.</li>
+</ul>
+
+<!-- ======================= MODO DEV ======================= -->
+<h2 id="devmode">3. Modo desenvolvedor e Depuração USB (Android)</h2>
+<p>Necessário para o <b>ADB</b>. Os caminhos são do One UI (Samsung).</p>
+
+<h3>3.1 Ativar o modo desenvolvedor</h3>
+<div class="figs">
+  <figure>
+    <div class="phone"><div class="screen">
+      <div class="bar"></div>
+      <h4>Configurações</h4>
+      <div class="row"><span>Wi-Fi</span></div>
+      <div class="row"><span>Bateria</span></div>
+      <div class="row hl"><span>Sobre o telefone</span><span>›</span></div>
+    </div></div>
+    <figcaption>1. Configurações → <b>Sobre o telefone</b> (no fim da lista).</figcaption>
+  </figure>
+  <figure>
+    <div class="phone"><div class="screen">
+      <div class="bar"></div>
+      <h4>Sobre o telefone</h4>
+      <div class="row"><span>Nome do dispositivo</span></div>
+      <div class="row hl"><span>Informações do software</span><span>›</span></div>
+      <div class="row"><span>Informações da bateria</span></div>
+    </div></div>
+    <figcaption>2. Toque em <b>Informações do software</b>.</figcaption>
+  </figure>
+  <figure>
+    <div class="phone"><div class="screen">
+      <div class="bar"></div>
+      <h4>Informações do software</h4>
+      <div class="row"><span>Versão do One UI</span></div>
+      <div class="row hl"><div>Número da versão<small>toque 7 vezes seguidas</small></div></div>
+      <div class="row" style="background:var(--on);color:#fff;justify-content:center;margin-top:18px">Modo de desenvolvedor ativado</div>
+    </div></div>
+    <figcaption>3. Toque <b>7 vezes</b> em <b>Número da versão</b> e digite sua senha ou PIN.</figcaption>
+  </figure>
+</div>
+
+<h3>3.2 Ligar a Depuração USB</h3>
+<div class="figs">
+  <figure>
+    <div class="phone"><div class="screen">
+      <div class="bar"></div>
+      <h4>Opções do desenvolvedor</h4>
+      <div class="row"><span><b>Ligado</b></span><span class="sw on"></span></div>
+      <div class="row hl"><div>Depuração USB<small>Modo de depuração com USB conectado</small></div><span class="sw on"></span></div>
+      <div class="row"><div>Depuração sem fio<small>Depurar pelo Wi-Fi</small></div><span class="sw"></span></div>
+      <div class="row"><div>Configuração USB padrão<small>Transferência de arquivos</small></div></div>
+    </div></div>
+    <figcaption>Configurações → <b>Opções do desenvolvedor</b>. A chave do topo e a <b>Depuração USB</b> devem estar ligadas.</figcaption>
+  </figure>
+  <figure>
+    <div class="phone"><div class="screen">
+      <div class="bar"></div>
+      <div class="dlg">
+        <b>Permitir depuração USB?</b>
+        <p style="margin:6px 0 8px;font-size:11px">A impressão digital da chave RSA do computador é: …</p>
+        <div style="margin-bottom:8px"><span class="chk"></span>Sempre permitir neste computador</div>
+        <span class="btn ghost">Cancelar</span> <span class="btn">Permitir</span>
+      </div>
+    </div></div>
+    <figcaption>Ao conectar o cabo, a tela deve estar <b>desbloqueada</b> e este aviso aparece. Marque a caixa e toque em <b>Permitir</b>.</figcaption>
+  </figure>
+</div>
+<div class="note warn">Se o aviso não aparecer: em Opções do desenvolvedor use <b>Revogar autorizações de depuração USB</b>, desligue e ligue a Depuração USB e reconecte o cabo. Quando terminar de usar, <b>desligue a Depuração USB</b> por segurança.</div>
+
+<h3>3.3 Modo USB: Transferência de arquivos</h3>
+<div class="figs">
+  <figure>
+    <div class="phone"><div class="screen">
+      <div class="bar"></div>
+      <h4>Notificações</h4>
+      <div class="row hl"><div><b>Sistema Android</b><small>Transferência de arquivos<br>Toque para outras opções USB</small></div></div>
+      <div class="row"><div>Usar USB para<small>○ Carregar &nbsp; ● Transferência de arquivos &nbsp; ○ Fotos (PTP)</small></div></div>
+    </div></div>
+    <figcaption>Puxe a barra de notificações com o cabo conectado e escolha <b>Transferência de arquivos</b>.</figcaption>
+  </figure>
+</div>
+
+<!-- ======================= ADB ======================= -->
+<h2 id="adb">4. ADB (terminal, via cabo)</h2>
+<p>Instalado com <code>brew install android-platform-tools</code>. Copia pastas inteiras com rapidez e não depende de interface gráfica.</p>
+
+<h3>4.1 Verificar se o celular foi reconhecido</h3>
+<div class="mac">
+  <div class="tb"><i></i><i></i><i></i><span>Terminal — zsh</span></div>
+  <pre>$ adb devices -l
+List of devices attached
+SERIAL_DO_APARELHO   device usb:... model:SM_A566B</pre>
+</div>
+<p class="cap">Exemplo do resultado esperado. A palavra <code>device</code> significa que está funcionando.</p>
+<table>
+<tr><th>Resultado</th><th>Significado</th></tr>
+<tr><td>Lista vazia</td><td>O celular não oferece a interface ADB (veja <a href="#problemas">Problemas</a>)</td></tr>
+<tr><td><code>unauthorized</code></td><td>Falta aceitar o aviso "Permitir depuração USB?" no celular</td></tr>
+<tr><td><code>device</code></td><td>Tudo certo</td></tr>
+</table>
+
+<h3>4.2 Copiar arquivos</h3>
+<pre># Fotos e vídeos da câmera
+adb pull /sdcard/DCIM ~/Galaxy_A56/DCIM
+
+# Downloads do celular
+adb pull /sdcard/Download ~/Galaxy_A56/Download
+
+# WhatsApp (mídia)
+adb pull /sdcard/Android/media/com.whatsapp ~/Galaxy_A56/WhatsApp
+
+# Ver o que existe no armazenamento
+adb shell ls /sdcard</pre>
+
+<h3>4.3 Sem cabo: Depuração sem fio</h3>
+<ol>
+<li>No celular: Opções do desenvolvedor → <b>Depuração sem fio</b> → ligar.</li>
+<li>Toque em <b>Parear dispositivo com código de pareamento</b>. Anote o <b>IP:porta</b> e o código de 6 dígitos.</li>
+<li>No Mac:
+<pre>adb pair IP:PORTA_DO_PAREAMENTO   # digite o código de 6 dígitos
+adb connect IP:PORTA_PRINCIPAL      # porta mostrada na tela de Depuração sem fio
+adb devices</pre></li>
+</ol>
+
+<!-- ======================= OPENMTP ======================= -->
+<h2 id="openmtp">5. OpenMTP (janela com pastas)</h2>
+<p>Substitui o antigo Android File Transfer. Instalado em <code>/Applications/OpenMTP.app</code>.</p>
+<div class="mac">
+  <div class="tb"><i></i><i></i><i></i><span>OpenMTP</span></div>
+  <div class="bd">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+      <div class="card" style="margin:0"><b>Mac</b><small style="display:block;color:var(--muted)">~/Galaxy_A56</small><br>📁 Fotos<br>📁 Videos</div>
+      <div class="card" style="margin:0"><b>Galaxy A56</b><small style="display:block;color:var(--muted)">Armazenamento interno</small><br>📁 DCIM<br>📁 Download<br>📁 Pictures</div>
+    </div>
+  </div>
+</div>
+<p class="cap">Ilustração: o celular à direita, o Mac à esquerda. Arraste de um lado para o outro.</p>
+<ol>
+<li>Conecte o cabo e escolha <b>Transferência de arquivos</b> no celular.</li>
+<li><b>Desbloqueie a tela</b> do celular e, se pedir, toque em <b>Permitir acesso aos dados do telefone</b>.</li>
+<li>Abra o OpenMTP. O celular deve aparecer no painel da direita.</li>
+</ol>
+<div class="note warn">Neste Mac o OpenMTP <b>não detectou</b> o celular. Se for tentar de novo, feche e abra o app com o cabo já conectado e o celular desbloqueado.</div>
+
+<!-- ======================= PROBLEMAS ======================= -->
+<h2 id="problemas">6. Problemas encontrados e o que significam</h2>
+<div class="card">
+<table>
+<tr><th>Sintoma</th><th>Causa provável</th><th>O que fazer</th></tr>
+<tr><td>Mac não mostra o celular no Finder</td><td>O macOS não suporta MTP de Android</td><td>Usar LocalSend, OpenMTP ou ADB</td></tr>
+<tr><td>Mac vê "SAMSUNG_Android" no USB, mas ADB e OpenMTP não listam o celular</td><td>O celular expôs só as interfaces MTP e CDC ACM, sem a interface ADB. Pode ser Depuração USB não aplicada, política de segurança (Knox, perfil de trabalho) ou tela bloqueada</td><td>Reconectar com a tela desbloqueada, revogar autorizações e religar a Depuração USB. Se persistir, use o LocalSend</td></tr>
+<tr><td>Troca de cabo não resolveu</td><td>O problema não era o cabo: o Mac reconhecia o aparelho em ambos</td><td>Foco em permissão no celular</td></tr>
+<tr><td>Mac não aparece no LocalSend do celular</td><td>LocalSend fechado no Mac, redes diferentes, isolamento de clientes</td><td>Abrir o app no Mac, conferir a rede, usar o IP ou o hotspot do celular</td></tr>
+<tr><td>Processos <code>ptpcamerad</code> / <code>icdd</code> do macOS</td><td>Podem "segurar" o celular antes do OpenMTP</td><td><code>killall ptpcamerad icdd</code> (o macOS reinicia sozinho)</td></tr>
+</table>
+</div>
+
+<!-- ======================= COMANDOS ======================= -->
+<h2 id="comandos">7. Referência rápida</h2>
+<div class="grid">
+<div class="card"><b>Pasta de destino</b><pre>open ~/Galaxy_A56</pre></div>
+<div class="card"><b>IP do Mac</b><pre>ipconfig getifaddr en0</pre></div>
+<div class="card"><b>Celulares no ADB</b><pre>adb devices -l</pre></div>
+<div class="card"><b>Reiniciar o ADB</b><pre>adb kill-server
+adb start-server</pre></div>
+<div class="card"><b>Interfaces USB do celular</b><pre>system_profiler SPUSBDataType</pre></div>
+<div class="card"><b>Converter HEIC → JPG</b><pre>cd ~/Galaxy_A56
+for f in *.heic; do
+  sips -s format jpeg "$f" --out "${f%.heic}.jpg"
+done</pre></div>
+</div>
+
+<div class="note">Fotos <code>.heic</code> abrem normalmente no Mac (Pré-visualização e Fotos). Converta para JPG só se precisar abrir em Windows ou enviar a quem não consegue ler HEIC.</div>
+
+<p class="sub" style="margin-top:40px">Pasta de trabalho: <code>~/Galaxy_A56</code> · fora do iCloud e fora de Documentos.</p>
+</div>
+</body>
+</html>
